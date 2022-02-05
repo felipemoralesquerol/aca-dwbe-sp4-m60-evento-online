@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Basic</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./handlers.js"></script>
+
+</head>
+
+<body>
+    <script>console.log('Carga de body', Date().toString())</script>
+    <div class="content">
+        <h1 class="title">Sign Up Basic</h1>
+        <div class="left">
+            <h1 class="heading">Heading</h1>
+            <p class="parrafo-registro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut libero tempore quae
+                repellat doloribus ullam incidunt consequatur numquam ea. Dolorum excepturi, delectus nulla perferendis
+                non mollitia. Accusantium laborum optio ullam. </p>
+        </div>
+        <div class="right">
+
+            <form id="form" onsubmit="handlerValidarRegister(event)">
+                <input type="text" id="nombre" name="Nombre" placeholder="Nombre">
+                <input type="text" id="apellido" name="Apellido" placeholder="Apellido">
+                <input type="email" id="email" name="Email" placeholder="Email">
+                <input type="password" id="password" name="Contraseña" placeholder="Contraseña" autocomplete="on">
+                <input type="submit" value="Registrarse">
+                <p id="messageError" class="parrafoError"></p>
+                <p class="registrarse-con">O registrase con </p>
+                <input type="button" value="Google"
+                    onclick="window.location.href = 'http://localhost:5000/auth/google'">
+                <input type="button" value="Facebook"
+                    onclick="window.location.href = 'http://localhost:5000/auth/facebook'">
+                <input type="button" value="LinkedIn"
+                    onclick="window.location.href = 'http://localhost:5000/auth/linkedin'">
+                <input type="button" value="Logout"
+                    onclick="window.location.href = 'http://localhost:5000/auth/logout'">
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>
