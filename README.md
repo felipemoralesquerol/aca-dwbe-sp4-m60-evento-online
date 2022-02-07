@@ -85,7 +85,7 @@ Adaptación de HTML básico con soporte previo de integración con Google, Faceb
 
 1. Crear carpeta para su instalación
 2. Ingresar a la carpeta creada y desde la consola ejecutar:
-   `git clone https://github.com/felipemoralesquerol/aca-dwbe-sp4-m58-evento-online`
+   `git clone https://github.com/felipemoralesquerol/aca-dwbe-sp4-m60-evento-online`
 3. Ingresar a la carpeta aca-sprint1-project.
 4. Ejecutar `npm install`.
 5. Copiar el archivo .env.example a .env
@@ -98,7 +98,7 @@ Adaptación de HTML básico con soporte previo de integración con Google, Faceb
 
 #### Documentación de la aplicación vía PostMan:
 
-- Descarga y ejecuta localmente la colección https://github.com/felipemoralesquerol/aca-dwbe-sp4-m58-evento-online/blob/master/api/postman/aca-dwbe-sp4-m58-evento-online.postman_collection.json
+- Descarga y ejecuta localmente la colección https://github.com/felipemoralesquerol/aca-dwbe-sp4-m60-evento-online/blob/master/api/postman/aca-dwbe-sp4-m60-evento-online.postman_collection.json
 
 ---
 
