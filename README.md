@@ -92,9 +92,14 @@ Adaptación de HTML básico con soporte previo de integración con Google, Faceb
 6. Configurar las variables de entorno del archivo .env a su configuración
 7. (opcional) Ejecutar script sql ubicado en carpeta sql que contiene las sentencias de creación de base de datos y tablas.
 8. Chequear las dependencias utilizadas vía `npm-check`
-9. Arrancar el servidor ejecutando `npm run dev`
-10. Ejecución de test ejecutando `npm run test`
-11. A disfrutar!!
+
+
+### Instrucciones para la ejecución
+
+1. Arrancar el servidor ejecutando `npm run dev`
+2. Acceder a la ruta```http://localhost:5000/```, para ver los endpoints disponibles
+3. Ejecución de test ejecutando `npm run test`
+4. A disfrutar!!
 
 #### Documentación de la aplicación vía PostMan:
 
