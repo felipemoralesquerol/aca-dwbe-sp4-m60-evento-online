@@ -25,7 +25,9 @@ app.use(helmet());
 app.use(morgan("common"));
 
 app.use(session({
-  secret: 'mi-secreto'
+  secret: 'mi-secreto',
+  resave: true,
+  saveUninitialized: true
 }));
 
 
@@ -40,7 +42,7 @@ const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.status(401).json('Usuario no autenticado');
+    res.status(401).json({ Mensaje: "Usuario no autenticado" });
   }
 }
 
@@ -60,7 +62,7 @@ app.use(passport.session());
 
 app.get('/failed', (req, res) => {
   console.log("Falla la loguearse");
-  return res.status(401).json('Falla al loguearse');
+  return res.status(401).json({ "Mensaje": "Falla al loguearse" });
 })
 
 
@@ -106,7 +108,7 @@ app.get('/auth/facebook/callback',
 app.get('/home', isLoggedIn, (req, res) => {
 
   console.log(req.user);
-  return res.send(`Bienvenido ${req.user.displayName}`);
+  return res.send({ "Mensaje": `Bienvenido ${req.user.displayName}` });
 }
 );
 
@@ -127,4 +129,6 @@ app.get('/auth/linkedin/callback',
 // Activación de la app en modo escucha
 app.listen(process.env.APP_PORT, function () {
   console.log(`Escuchando el puerto ${process.env.APP_PORT}!`);
+  console.log(`Ejecución en http://localhost:${process.env.APP_PORT}`);
+
 });
