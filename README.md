@@ -94,7 +94,7 @@ Adaptación de HTML básico con soporte previo de integración con Google, Faceb
 8. Chequear las dependencias utilizadas vía `npm-check`
 
 
-### Instrucciones para la ejecución
+### Instrucciones para la ejecución:
 
 1. Arrancar el servidor ejecutando `npm run dev`
 2. Acceder a la ruta```http://localhost:5000/```, para ver los endpoints disponibles
