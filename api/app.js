@@ -95,6 +95,7 @@ app.get('/auth/logout', isLoggedIn, logout, (req, res) => {
 
 app.get('/auth/facebook',
   //passport.authenticate('facebook', { scope: ['user_friends'] })
+  //TODO. Investir scopes!
   passport.authenticate('facebook')
 );
 
