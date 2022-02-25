@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-console.log(process.env.APP_SESSION_SECRET)
+
 app.use(session({
   secret: process.env.APP_SESSION_SECRET,
   resave: true,
