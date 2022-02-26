@@ -11,7 +11,8 @@ router.get("/", function (req, res) {
       "http://localhost:5000/home",
       "http://localhost:5000/auth/logout",
       "http://localhost:5000/failed",
-    ]
+    ],
+    developer: "Felipe Morales"
   });
 });
 
