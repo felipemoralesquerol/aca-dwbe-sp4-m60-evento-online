@@ -16,7 +16,7 @@ try {
   });
   console.log(redis);
 } catch (error) {
-  console.error("Error de acceso a Redis" + error);
+  console.error("Error de acceso a Redis: " + error);
 }
 
 module.exports = client;

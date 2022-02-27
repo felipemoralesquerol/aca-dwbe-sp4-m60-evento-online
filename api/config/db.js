@@ -29,7 +29,7 @@ async function authenticate() {
 
   } catch (error) {
     console.error(
-      "Se ha detectado un error al conectarse a la base de datos:",
+      "Se ha detectado un error al conectarse a la base de datos: ",
       error
     );
   }
