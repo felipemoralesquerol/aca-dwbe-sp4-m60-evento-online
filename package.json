@@ -39,5 +39,9 @@
     "sequelize": "^6.6.5",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "coverage-node": "^6.1.0",
+    "eslint": "^8.10.0"
   }
 }
