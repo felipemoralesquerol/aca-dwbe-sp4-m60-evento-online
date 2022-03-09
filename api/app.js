@@ -12,6 +12,7 @@ const session = require('express-session')
 require('./auth/passport-setup-google');
 require('./auth/passport-setup-facebook');
 require('./auth/passport-setup-linkedin');
+const {isLoggedIn} = require('./middleware/isLoggedIn');
 
 //const cookieSession = require('cookie-session')
 
@@ -30,21 +31,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
-// app.use(cookieSession({
-//   name: 'backend-auth',
-//   keys: ['key1', 'key2']
-// }))
-
-// Auth middleware that checks if the user is logged in
-const isLoggedIn = (req, res, next) => {
-  console.log(req);
-  if (req.isAuthenticated()) {
-    next();
-  } else {
-    res.status(401).json({ Mensaje: "Usuario no autenticado" });
-  }
-}
 
 const program = require("./routes/program.js");
 app.use("/", program);
@@ -69,7 +55,8 @@ app.get('/failed', (req, res) => {
 // Auth Routes
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }),
-  (req, res) => console.log('Usuario autenticado'));
+  (req, res) => console.log('Usuario autenticado')
+);
 
 
 app.get('/auth/google/callback', passport.authenticate('google',
@@ -87,7 +74,7 @@ function logout(req, res, next) {
 
 
 // Usada tanto para todos los passport
-app.get('/auth/logout', isLoggedIn, logout, (req, res) => {
+app.get('/auth/logout',  logout, (req, res) => {
   console.log('logged out');
   res.status(200).redirect('/');
 })
