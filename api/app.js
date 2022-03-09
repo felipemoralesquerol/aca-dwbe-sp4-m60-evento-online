@@ -14,7 +14,6 @@ require('./auth/passport-setup-facebook');
 require('./auth/passport-setup-linkedin');
 const {isLoggedIn} = require('./middleware/isLoggedIn');
 
-//const cookieSession = require('cookie-session')
 
 // Inicializacion del server
 const app = express();
