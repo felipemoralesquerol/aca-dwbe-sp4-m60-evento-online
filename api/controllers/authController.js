@@ -1,12 +1,12 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 const Op = require('sequelize').Op;
-const httpMessage = require("../helpers/httpMessage");
-const passwordManager = require("../helpers/passwordManager");
+const httpMessage = require('../helpers/httpMessage');
+const passwordManager = require('../helpers/passwordManager');
 
-const UsuariosModel = require("../models/usuarios");
+const UsuariosModel = require('../models/usuarios');
 
 // TODO: Investigar si corresponde agregar mas campos
-function getPayload(usuario) {
+function getPayload (usuario) {
   return {
     email: usuario.email,
     username: usuario.username,
@@ -15,32 +15,30 @@ function getPayload(usuario) {
   };
 }
 
-
-
 // Login
-exports.signin = async function signin(req, res, next) {
+exports.signin = async function signin (req, res, next) {
   try {
     const { email, password } = req.body;
-    console.log("signin", email);
+    console.log('signin', email);
 
     // TODO: Sanitizar y validar la información ingresada
 
     const usuario = await UsuariosModel.findOne({
-      where: { email: email, borrado: false },
+      where: { email: email, borrado: false }
     });
 
     if (!usuario) {
-      httpMessage.NotFound("Credenciales incorrectas", res);
+      httpMessage.NotFound('Credenciales incorrectas', res);
       return;
     }
 
     if (usuario.suspendido) {
-      httpMessage.NotFound("Usuario suspendido", res);
+      httpMessage.NotFound('Usuario suspendido', res);
       return;
     }
 
     // Armado de payload
-    let payload = getPayload(usuario);
+    const payload = getPayload(usuario);
 
     const compare = passwordManager.comparePassword(password, usuario.password);
     if (compare) {
@@ -53,7 +51,7 @@ exports.signin = async function signin(req, res, next) {
             httpMessage.Error(req, res, err);
           } else {
             req.token = token;
-            res.json({ status: "signin", token });
+            res.json({ status: 'signin', token });
           }
         }
       );
@@ -66,11 +64,11 @@ exports.signin = async function signin(req, res, next) {
 };
 
 // Registro
-exports.signup = async function signup(req, res, next) {
+exports.signup = async function signup (req, res, next) {
   try {
     // TODO: Sanetizar y validar la entrada
     const { username, password, email, nombre, direccion_envio, telefono } = req.body;
-    console.log("signup", req.body);
+    console.log('signup', req.body);
 
     let usuario = await UsuariosModel.findOne({
       where: {
@@ -78,7 +76,7 @@ exports.signup = async function signup(req, res, next) {
       }
     });
     if (usuario) {
-      httpMessage.DuplicateData("Email y/o Username ya registrado!", res);
+      httpMessage.DuplicateData('Email y/o Username ya registrado!', res);
       return;
     };
 
@@ -89,7 +87,7 @@ exports.signup = async function signup(req, res, next) {
     usuario = await UsuariosModel.create(req.body);
 
     // Armado de payload
-    let payload = getPayload(usuario);
+    const payload = getPayload(usuario);
 
     jwt.sign(
       payload,
@@ -100,7 +98,7 @@ exports.signup = async function signup(req, res, next) {
           httpMessage.Error(req, res, err);
         } else {
           req.token = token;
-          res.json({ status: "signup", token });
+          res.json({ status: 'signup', token });
         }
       }
     );
@@ -109,7 +107,7 @@ exports.signup = async function signup(req, res, next) {
   }
 };
 
-exports.authenticated = function authenticated(req, res, next) {
+exports.authenticated = function authenticated (req, res, next) {
   // TODO: Implementar acceso a base de datos
   // NOTE: Requiere que la petición incluye en el campo headers una clave (key) de la forma
   //       Bearer {token}, donde este token haya sido suministrado por signin o signup
@@ -118,16 +116,16 @@ exports.authenticated = function authenticated(req, res, next) {
       httpMessage.Denied(
         req,
         res,
-        "Acceso denegado por falta de información de autorización"
+        'Acceso denegado por falta de información de autorización'
       );
     } else {
-      const token = req.headers.authorization.split(" ")[1];
+      const token = req.headers.authorization.split(' ')[1];
       jwt.verify(token, process.env.JWT_SECRET_KEY, (err, authData) => {
         if (err) {
-          httpMessage.Denied(req, res, "Acceso denegado: " + err.message);
+          httpMessage.Denied(req, res, 'Acceso denegado: ' + err.message);
         } else {
           req.authData = authData;
-          //TODO: Recuperar data del usuario
+          // TODO: Recuperar data del usuario
           console.log(req.authData);
 
           next();
@@ -144,17 +142,17 @@ exports.isAdmin = (req, res, next) => {
   if (req.authData.admin) {
     next();
   } else {
-    console.error("Acceso denegado: ");
-    res.status(403).send({ status: "Acceso denegado" });
+    console.error('Acceso denegado: ');
+    res.status(403).send({ status: 'Acceso denegado' });
   }
 };
 
 // Perfil de usuario
 exports.me = (req, res, next) => {
-  res.json({ status: "me", data: req.authData });
+  res.json({ status: 'me', data: req.authData });
 };
 
 // Ususuario suspendido
 exports.suspender = (req, res, next) => {
-  res.status(500).json({ status: "Opción no implementada aún!" });
+  res.status(500).json({ status: 'Opción no implementada aún!' });
 };

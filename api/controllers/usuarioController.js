@@ -1,9 +1,8 @@
-const httpMessage = require("./../helpers/httpMessage");
-const usuarios = require("../models/usuarios");
-const passwordManager = require("./../helpers/passwordManager");
+const httpMessage = require('./../helpers/httpMessage');
+const usuarios = require('../models/usuarios');
+const passwordManager = require('./../helpers/passwordManager');
 
-
-exports.list = async function list(req, res, next) {
+exports.list = async function list (req, res, next) {
   try {
     const data = await usuarios.findAll();
     console.log(data);
@@ -13,16 +12,16 @@ exports.list = async function list(req, res, next) {
   }
 };
 
-exports.pedidos = function pedidos(req, res) {
+exports.pedidos = function pedidos (req, res) {
   //   //TODO: Refactoring con /pedidos
   //   pedidosUsuario = pedidos.filter(
   //     (p) => req.usuario.admin || p.usuario == req.usuario.username
   //   );
   //   console.log(pedidosUsuario);
-  httpMessage.Message("usuarios.pedidos: opción no implementada");
+  httpMessage.Message('usuarios.pedidos: opción no implementada');
 };
 
-exports.borrado = function borrado(req, res) {
+exports.borrado = function borrado (req, res) {
   //   //TODO: Modularizar
   //   let usuario = req.usuario;
   //   let index = req.usuarioIndex;
@@ -36,26 +35,25 @@ exports.borrado = function borrado(req, res) {
   //   resultado = "Borrado según el indice: " + usuarioABorrar;
   //   usuarioABorrar.borrado = true;
   //   res.send({ resultado: resultado, valor: usuarioABorrar });
-  httpMessage.Message("usuarios.borrado: opción no implementada");
+  httpMessage.Message('usuarios.borrado: opción no implementada');
 };
-
 
 exports.agregarDefaultData = async (req, res, next) => {
   try {
-    //await UsuariosModel.sync({ force: true });
+    // await UsuariosModel.sync({ force: true });
 
-    let dato = await usuarios.findOrCreate({
+    const dato = await usuarios.findOrCreate({
       where: {
-        username: "admin",
-        nombre: "admin",
-        email: "admin@example.com",
+        username: 'admin',
+        nombre: 'admin',
+        email: 'admin@example.com',
         admin: true,
-        password: passwordManager.encrypt("pass1234"),
-      },
+        password: passwordManager.encrypt('pass1234')
+      }
     });
 
-    httpMessage.Message("Agregado de data OK", res)
+    httpMessage.Message('Agregado de data OK', res);
   } catch (error) {
     httpMessage.Error(req, res, error);
   }
-}
+};

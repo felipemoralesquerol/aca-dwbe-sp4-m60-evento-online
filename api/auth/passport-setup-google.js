@@ -16,8 +16,8 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL
 },
-  function (accessToken, refreshToken, profile, done) {
-    console.log('Use GoogleStrategy');
-    return done(null, profile);
-  }
+function (accessToken, refreshToken, profile, done) {
+  console.log('Use GoogleStrategy');
+  return done(null, profile);
+}
 ));

@@ -1,19 +1,19 @@
-const bcrypt = require("bcrypt");
-const authConfig = require("../config/auth");
-const httpMessage = require("../helpers/httpMessage");
+const bcrypt = require('bcrypt');
+const authConfig = require('../config/auth');
+const httpMessage = require('../helpers/httpMessage');
 
 module.exports = {
   // Encriptamos la contraseña
-  encrypt(password) {
+  encrypt (password) {
     return bcrypt.hashSync(password, Number.parseInt(authConfig.rounds));
   },
 
   // Comparamos la clave
-  comparePassword(passwordEncrypt, passwordBase) {
+  comparePassword (passwordEncrypt, passwordBase) {
     try {
       return bcrypt.compareSync(passwordEncrypt, passwordBase);
     } catch (error) {
-      httpMessage.Error(req, res, error);
+      httpMessage.Error(undefined, undefined, error);
     }
-  },
+  }
 };

@@ -1,6 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../config/db");
-const passwordManager = require("../helpers/passwordManager");
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/db');
 
 class UsuariosModel extends Model { }
 
@@ -9,50 +8,49 @@ UsuariosModel.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     nombre: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     apellido: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     telefono: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     direccion_envio: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     admin: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: false
     },
     borrado: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: false
     },
     suspendido: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   },
   {
     sequelize,
     modelName: 'usuario',
-    createdAt: "createTimestamp",
-    updatedAt: "updateTimestamp",
-    underscored: true,
+    createdAt: 'createTimestamp',
+    updatedAt: 'updateTimestamp',
+    underscored: true
   }
 );
-
 
 module.exports = UsuariosModel;

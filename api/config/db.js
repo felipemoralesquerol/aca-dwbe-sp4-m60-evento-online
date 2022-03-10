@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -7,14 +7,13 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    logging: console.log,
     logging: function (str) {
       console.log(str);
     }
-  },
+  }
 );
 
-async function authenticate() {
+async function authenticate () {
   try {
     await sequelize.authenticate();
     console.log(process.env.DB_NAME, process.env.DB_FORCE);
@@ -24,12 +23,11 @@ async function authenticate() {
       await sequelize.sync({ force: true });
     };
 
-    console.log("Conexión a la base de datos satisfactoriamente.");
-    //const associations = require("./../api/models/associations/core");
-
+    console.log('Conexión a la base de datos satisfactoriamente.');
+    // const associations = require("./../api/models/associations/core");
   } catch (error) {
     console.error(
-      "Se ha detectado un error al conectarse a la base de datos: ",
+      'Se ha detectado un error al conectarse a la base de datos: ',
       error
     );
   }

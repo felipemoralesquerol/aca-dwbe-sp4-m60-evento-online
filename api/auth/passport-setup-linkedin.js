@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 const passport = require('passport');
 const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
@@ -16,9 +16,8 @@ passport.use(new LinkedInStrategy({
   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
   callbackURL: process.env.LINKEDIN_CALLBACK_URL
 },
-  function (accessToken, refreshToken, profile, done) {
-    console.log('Use LinkedIn Strategy');
-    return done(null, profile);
-  }
+function (accessToken, refreshToken, profile, done) {
+  console.log('Use LinkedIn Strategy');
+  return done(null, profile);
+}
 ));
-

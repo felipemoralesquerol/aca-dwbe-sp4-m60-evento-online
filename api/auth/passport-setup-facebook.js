@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -16,9 +16,8 @@ passport.use(new FacebookStrategy({
   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
   callbackURL: process.env.FACEBOOK_CALLBACK_URL
 },
-  function (accessToken, refreshToken, profile, done) {
-    console.log('Use Facebook Strategy');
-    return done(null, profile);
-  }
+function (accessToken, refreshToken, profile, done) {
+  console.log('Use Facebook Strategy');
+  return done(null, profile);
+}
 ));
-
