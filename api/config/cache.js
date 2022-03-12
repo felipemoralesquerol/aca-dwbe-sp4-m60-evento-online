@@ -8,8 +8,6 @@ try {
     port: process.env.REDIS_PORT,
     db: 1
   }); // crear la conexión del cliente
-  // host: IP del servidor Redis
-  // port: Puerto del servidor Redis
 
   client.on('error', function (error) {
     console.error(error);

@@ -3,12 +3,12 @@ const authConfig = require('../config/auth');
 const httpMessage = require('../helpers/httpMessage');
 
 module.exports = {
-  // Encriptamos la contraseña
+  // Encriptamos la contraseña por cuestiones de seguridad
   encrypt (password) {
     return bcrypt.hashSync(password, Number.parseInt(authConfig.rounds));
   },
 
-  // Comparamos la clave
+  // Comparamos las claves
   comparePassword (passwordEncrypt, passwordBase) {
     try {
       return bcrypt.compareSync(passwordEncrypt, passwordBase);
