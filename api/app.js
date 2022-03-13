@@ -108,5 +108,5 @@ app.get('/auth/linkedin/callback',
 // Activación de la app en modo escucha con los parametros de ambiente
 app.listen(process.env.APP_PORT, function () {
   console.log(`Escuchando el puerto ${process.env.APP_PORT}!`);
-  console.log(`Ejecución en http://localhost:${process.env.APP_PORT}`);
+  console.log(`Ejecución en ${process.env.APP_URL}:${process.env.APP_PORT}`);
 });
