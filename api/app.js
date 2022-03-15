@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const db = require('./config/db');
 
 const passport = require('passport');
 const session = require('express-session');
