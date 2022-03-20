@@ -4,7 +4,7 @@ const { usuarios } = require('./models/usuarios');
 
 // Funciones de middlewares
 function isLoginUsuario (req, res, next) {
-  id = parseInt(req.query.index);
+  const id = parseInt(req.query.index);
   console.log(req.query);
   // TODO: Por el momento solo trabajamos con el indice del usuario
   // index = usuarios.findIndex(elemento => elemento.id == id);
